@@ -1,18 +1,13 @@
 import React,{ Component } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import{getData,getAllData} from "../actions/fetchData"
+import{getAllData} from "../actions/fetchData"
 import "../styles.css";
 
 class DisplayData extends Component{
 
   handleLoadUsersClick = () => {
     this.props.onLoadUsersClick();
-
-    // let's do our api call
-    fetch("https://jsonplaceholder.typicode.com/comments")
-      .then((response) => response.json())
-      .then((json) => this.props.onLoadUsersComplete(json));
   };
     
     render(){
@@ -37,9 +32,7 @@ class DisplayData extends Component{
                             ))}
                           </ol>
                         ) : null}
-                </div>
-
-            
+                </div>            
     
         );
 
@@ -55,10 +48,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     onLoadUsersClick: () => {
-      dispatch(getData());
-    },
-    onLoadUsersComplete: (users) => {
-      dispatch(getAllData(users));
+      dispatch(getAllData());
     }
   };
 };

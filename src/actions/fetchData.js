@@ -1,16 +1,19 @@
-export const GET_DATA = "GET_DATA";
+import { readData } from "../repositories/readData";
 export const GET_ALL_DATA = "GET_ALL_DATA";
 
-export const getData = () => {
-  return {
-    type: GET_DATA
-  };
-};
+export const getAllData = () =>async (dispatch)=>
+{
+    try{
+      const getAllData = await readData();
+          dispatch({
+              data: getAllData,
+              type: GET_ALL_DATA,
+          });
+    }
+    catch(error){
 
-export const getAllData = users => {
-  return {
-    type: GET_ALL_DATA,
-    users
-  };
-};
+      throw (error);
+    };
+}
+
   
